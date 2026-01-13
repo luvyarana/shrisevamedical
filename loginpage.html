@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In - Shri Seva Medicals</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #f5f5f5;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 20px;
+      background: #fff;
+      border-bottom: 1px solid #e0e0e0;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .logo {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-size: 24px;
+      color: #cc0000;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      white-space: nowrap;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .header-links {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .header-links a {
+      font-size: 14px;
+      color: #666;
+      text-decoration: none;
+      cursor: pointer;
+      transition: color 0.2s ease;
+      font-weight: 600;
+    }
+
+    .header-links a:hover {
+      color: #cc0000;
+    }
+
+    .active-link {
+      color: #cc0000;
+      border-bottom: 2px solid #cc0000;
+      padding-bottom: 2px;
+    }
+
+    .container {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+
+    .login-box {
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      padding: 40px;
+      width: 100%;
+      max-width: 450px;
+    }
+
+    .login-box h1 {
+      font-size: 28px;
+      color: #1a1a1a;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    .login-box p {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 30px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 8px;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 12px 14px;
+      font-size: 14px;
+      border: 1px solid #d0d0d0;
+      border-radius: 4px;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: #cc0000;
+      box-shadow: 0 0 0 3px rgba(204,0,0,0.1);
+    }
+
+    .form-group input::placeholder {
+      color: #999;
+    }
+
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+      gap: 8px;
+    }
+
+    .checkbox-group input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+      accent-color: #cc0000;
+    }
+
+    .checkbox-group label {
+      font-size: 13px;
+      color: #666;
+      margin: 0;
+      cursor: pointer;
+    }
+
+    .checkbox-group a {
+      text-decoration: none;
+      color: #cc0000;
+      font-weight: 600;
+    }
+
+    .checkbox-group a:hover {
+      text-decoration: underline;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 14px;
+      font-size: 16px;
+      font-weight: 600;
+      color: #fff;
+      background: #cc0000;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      margin-bottom: 20px;
+    }
+
+    .submit-btn:hover {
+      background-color: #bb0000;
+      box-shadow: 0 4px 12px rgba(204,0,0,0.2);
+      transform: translateY(-2px);
+    }
+
+    .submit-btn:active {
+      transform: translateY(0);
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      margin: 20px 0;
+      gap: 10px;
+      color: #999;
+      font-size: 13px;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #e0e0e0;
+    }
+
+    .social-login {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .social-btn {
+      padding: 12px;
+      font-size: 14px;
+      font-weight: 600;
+      border: 1px solid #d0d0d0;
+      border-radius: 4px;
+      background: #fff;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .social-btn:hover {
+      background: #f5f5f5;
+      border-color: #999;
+    }
+
+    .signup-link {
+      text-align: center;
+      font-size: 14px;
+      color: #666;
+    }
+
+    .signup-link a {
+      color: #cc0000;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .signup-link a:hover {
+      text-decoration: underline;
+    }
+
+    .footer {
+      background: #1a1a1a;
+      padding: 30px 20px;
+      font-size: 12px;
+      color: #999;
+      text-align: center;
+      border-top: 1px solid #333;
+    }
+
+    .footer a {
+      color: #cc0000;
+      text-decoration: none;
+      margin: 0 5px;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 1024px) {
+      .header {
+        padding: 12px 15px;
+      }
+
+      .logo {
+        font-size: 20px;
+      }
+
+      .header-links {
+        gap: 15px;
+      }
+
+      .header-links a {
+        font-size: 13px;
+      }
+
+      .container {
+        padding: 30px 15px;
+      }
+
+      .login-box {
+        padding: 30px;
+        max-width: 400px;
+      }
+
+      .login-box h1 {
+        font-size: 24px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .header {
+        padding: 12px 12px;
+        gap: 10px;
+      }
+
+      .logo {
+        font-size: 18px;
+      }
+
+      .header-links {
+        gap: 12px;
+        font-size: 12px;
+      }
+
+      .header-links a {
+        font-size: 12px;
+      }
+
+      .container {
+        padding: 20px 12px;
+        min-height: calc(100vh - 200px);
+      }
+
+      .login-box {
+        padding: 25px;
+        max-width: 100%;
+      }
+
+      .login-box h1 {
+        font-size: 22px;
+        margin-bottom: 8px;
+      }
+
+      .login-box p {
+        font-size: 13px;
+        margin-bottom: 20px;
+      }
+
+      .form-group {
+        margin-bottom: 16px;
+      }
+
+      .form-group label {
+        font-size: 13px;
+        margin-bottom: 6px;
+      }
+
+      .form-group input {
+        padding: 10px 12px;
+        font-size: 13px;
+      }
+
+      .submit-btn {
+        padding: 12px;
+        font-size: 14px;
+      }
+
+      .checkbox-group {
+        font-size: 12px;
+      }
+
+      .divider {
+        font-size: 12px;
+        margin: 16px 0;
+      }
+
+      .social-login {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin-bottom: 16px;
+      }
+
+      .social-btn {
+        padding: 10px;
+        font-size: 12px;
+      }
+
+      .footer {
+        padding: 20px 12px;
+        font-size: 11px;
+      }
+    }
+
+    /* ==================== SMALL PHONES (480px and below) ==================== */
+    @media (max-width: 480px) {
+      .header {
+        padding: 10px 10px;
+      }
+
+      .logo {
+        font-size: 16px;
+      }
+
+      .header-links {
+        gap: 10px;
+      }
+
+      .header-links a {
+        font-size: 11px;
+      }
+
+      .container {
+        padding: 15px 10px;
+      }
+
+      .login-box {
+        padding: 20px;
+        max-width: 100%;
+      }
+
+      .login-box h1 {
+        font-size: 20px;
+      }
+
+      .login-box p {
+        font-size: 12px;
+      }
+
+      .form-group label {
+        font-size: 12px;
+      }
+
+      .form-group input {
+        padding: 9px 10px;
+        font-size: 12px;
+      }
+
+      .submit-btn {
+        padding: 10px;
+        font-size: 13px;
+      }
+
+      .footer {
+        padding: 15px 10px;
+        font-size: 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="header">
+    <a href="shriseva_responsive.html" class="logo">Shri Seva Medicals</a>
+    <div class="header-links">
+      <a href="shriseva_responsive.html">Back to Home</a>
+      <a href="loginpage.html" class="active-link">Sign In</a>
+      <a href="#register">Register</a>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="login-box">
+      <h1>Welcome Back</h1>
+      <p>Sign in to your account to continue shopping</p>
+
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="email">Email or Phone Number</label>
+          <input 
+            type="email" 
+            id="email" 
+            name="email" 
+            placeholder="Enter your email or phone number"
+            required
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input 
+            type="password" 
+            id="password" 
+            name="password" 
+            placeholder="Enter your password"
+            required
+          >
+        </div>
+
+        <div class="checkbox-group">
+          <input type="checkbox" id="remember" name="remember">
+          <label for="remember">Remember me</label>
+          <a href="#forgot" style="margin-left: auto;">Forgot password?</a>
+        </div>
+
+        <button type="submit" class="submit-btn">Sign In</button>
+      </form>
+
+      <div class="divider">OR</div>
+
+      <div class="social-login">
+        <button class="social-btn" onclick="alert('Google Sign In - Coming Soon!')">
+          <span>G</span> Google
+        </button>
+        <button class="social-btn" onclick="alert('Apple Sign In - Coming Soon!')">
+          <span>🍎</span> Apple
+        </button>
+      </div>
+
+      <div class="signup-link">
+        Don't have an account? <a href="#register">Sign up here</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>
+      <a href="#privacy">Privacy Policy</a> | 
+      <a href="#terms">Terms of Use</a> | 
+      <a href="#contact">Contact Us</a>
+    </p>
+    <p style="margin-top: 10px;">© 2026 Shri Seva Medicals. All rights reserved.</p>
+  </div>
+
+  <script>
+    const loginForm = document.getElementById('loginForm');
+    loginForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      
+      if (email && password) {
+        alert(`Welcome back! You're now signed in as ${email}`);
+      }
+    });
+  </script>
+
+</body>
+</html>
