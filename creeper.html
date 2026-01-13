@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Photo Store Layout</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body{
+      background-color: olive;
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 40px;
+      background: lemonchiffon;
+      border: 10px solid hotpink;
+    }
+
+    .logo {
+      font-family: "BBH Bartle", sans-serif;
+      font-size: 24px;
+      color: green;
+      font-weight: bold;
+    }
+
+    .search {
+      width: 280px;
+      padding: 8px 12px;
+      margin-left: 10px;
+    }
+
+    .search:focus {
+      outline: 2px solid rgba(244,51,151,0.18);
+      transition: outline 0.15s ease-in-out;
+    }
+
+
+    .nav {
+      display: flex;
+      gap: 25px;
+      padding: 12px 40px;
+      background: #f5f5f5;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: black;
+      font-weight: bold;
+      transition: color 0.18s ease, transform 0.18s ease;
+    }
+
+    .nav a:hover {
+      color: #f43397;
+      transform: translateY(-3px);
+    }
+
+    .bodyheader {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 50px 40px;
+      background: #fafafa;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .bodyheader h1 {
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+
+    .bodyheader p {
+      font-size: 18px;
+      color: #555;
+      margin-bottom: 15px;
+    }
+
+    .bodyheader button {
+      padding: 10px 18px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.22s ease, transform 0.15s ease, box-shadow 0.18s ease;
+      background: #333;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+    }
+
+    .bodyheader button:hover {
+      transform: translateY(-4px);
+      background-color: #f43397;
+      box-shadow: 0 8px 20px rgba(244,51,151,0.12);
+    }
+
+    .bodyheaderimage {
+      width: 260px;
+      height: 160px;
+      background: #ddd;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #666;
+      transition: transform 0.28s ease, box-shadow 0.28s ease, opacity 0.28s ease;
+    }
+
+    .bodyheaderimage:hover {
+      transform: scale(1.03);
+      box-shadow: 0 14px 30px rgba(0,0,0,1);
+      opacity: 0.95;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      padding: 40px;
+    }
+
+    .card {
+      background: gray;
+      height: 220px;
+      padding: 15px;
+      position: relative;
+      font-weight: bold;
+      transition: transform 0.22s ease, box-shadow 0.22s ease, background-color 0.22s ease;
+    }
+
+    .badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: black;
+      color: white;
+      padding: 5px 8px;
+      font-size: 14px;
+      transition: transform 0.18s ease, opacity 0.18s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 18px 40px rgba(0,0,0,1);
+      background: whitesmoke;
+    }
+    /* .badge:hover {
+      transform: translateY(-12px);
+      opacity: 0.95;
+    } */
+
+    .card:hover {
+      .badge{
+        transform: translateY(-36px);
+        opacity: 0.95;
+      }
+      transform: translateY(-6px);
+      opacity: 0.95;
+    }
+    .footer {
+      background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+      padding: 50px 40px 30px;
+      font-size: 14px;
+      color: #ecf0f1;
+      border-top: 3px solid #f43397;
+      margin-top: 50px;
+      bottom :0px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer h4 {
+      margin-bottom: 16px;
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+      position: relative;
+      display: inline-block;
+    }
+
+    .footer h4:after {
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      background: #f43397;
+    }
+
+    .footer ul {
+      list-style: none;
+    }
+
+    .footer li {
+      margin-bottom: 10px;
+      padding: 6px 0;
+      color: oldlace;
+      position: relative;
+      padding-left: 20px;
+    }
+
+    .footer li:before {
+      content: '>';
+      position: absolute;
+      left: 0;
+      color: #f43397;
+      font-weight: bold;
+    }
+
+    .footergrid > div {
+      padding: 15px;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="header">
+    <div class="logo">Creeper Mart</div>
+
+    <label>
+      Search Products & Designs
+      <input class="search" type="text" placeholder="Search Products & Designs">
+    </label>
+
+    <div>
+      Sign In 🛒
+    </div>
+  </div>
+
+  <div class="nav">
+    <a href="">Prints</a>
+    <a href="">Books</a>
+    <a href="">Cards</a>
+    <a target="_blank" href="index2.html">Calendars</a>
+    <a href="">Gifts</a>
+    <a href="">Deals</a>
+  </div>
+
+
+  <div class="bodyheader">
+    <div class="hero-text">
+      <h1>Turn Moments into Memories</h1>
+      <p>Premium prints, books and personalized gifts</p>
+      <button>Shop Now</button>
+    </div>
+
+    <div class="bodyheaderimage">
+      Image
+    </div>
+</div>
+
+
+  <div class="grid">
+    <div class="card">
+      <div class="badge">50% OFF</div>
+      <div>Stationery</div>
+      <div><img style = "display: block; margin: 0 auto; width: 90%;" src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcR3B-q6BHq5uq4nmm-mVGd87fmn2F83xm2lP_79xFHoe46nof8LYb5t3DRQtbN1MZsstpMfxn95-2hOVXiT7WGot-bIAOfrWx_SAvKiV_80yQ--JwC451qSbdQ" width="340" height="180"></div>
+    </div>
+
+    <div class="card">
+      <div class="badge">60% OFF</div>
+      Personalized Calendars
+      <div>
+        <img style = "display: block; margin: 0 auto; width: 90%;" src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcTJpy6N5HJAAA958RbPHV3qztVr6Gj7Bt_NrTzpVLeKtu_QrW7Ea8morP2O1W-p9oxEAuPNO6CFfPC21nl26pc4-KY28xW6hZYSQBRIEzjW" width="340" height="180">
+      </div>
+    </div>
+
+    <div class="card">
+      Groceries
+      <div>
+        <img style="display: block; margin: 0 auto; width: 90%;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXOyktAKxZylGuTiQILmkNtFU2lNXiWol_JQ&s">
+      </div>
+    </div>
+
+    <!-- <div class="card">
+      Canvas Prints
+    </div> -->
+  </div>
+  <div class="footer">
+    <div class="footer-grid">
+  
+      <div>
+        <h4>Help</h4>
+        <ul>
+          <li>Shipping</li>
+          <li>Returns</li>
+          <li>Contact</li>
+        </ul>
+      </div>
+  
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li>About</li>
+          <li>Careers</li>
+          <li>News</li>
+        </ul>
+      </div>
+  
+      <div>
+        <h4>Legal</h4>
+        <ul>
+          <li>Privacy</li>
+          <li>Terms</li>
+          <li>Accessibility</li>
+        </ul>
+      </div>
+  
+      <div>
+        <h4>Extras</h4>
+        <ul>
+          <li>Ads</li>
+          <li>Trials</li>
+        </ul>
+      </div>
+  
+    </div>
+  </div>
+
+</body>
+</html>

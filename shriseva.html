@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>LuvyaMart</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body{
+      background-color: #717171;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 40px;
+      background: #fff;
+      border-bottom: 1px solid #e0e0e0;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    }
+
+    .logo {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-size: 28px;
+      color: #cc0000;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+    }
+
+    .search {
+      width: 320px;
+      padding: 10px 16px;
+      margin-left: 30px;
+      border: 1px solid #d0d0d0;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+
+    .search:focus {
+      outline: none;
+      border-color: #cc0000;
+      box-shadow: 0 0 0 3px rgba(204,0,0,0.1);
+      transition: all 0.8s ease;
+    }
+
+
+    .nav {
+      display: flex;
+      gap: 0;
+      padding: 14px 40px;
+      background: #fff;
+      border-bottom: 1px solid #e0e0e0;
+      justify-content: flex-start;
+    }
+    
+    .nav-item, .nav a {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      font-size: 14px;
+      transition: color 0.8s ease;
+      position: relative;
+    }
+
+    .nav a:hover {
+      color: #cc0000;
+    }
+    
+    .nav a:hover::after {
+      content: '';
+      position: absolute;
+      bottom: -14px;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: #cc0000;
+    }
+    
+    .nav-item {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+    }
+    
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      border-top: none;
+      min-width: 320px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      z-index: 10;
+      padding: 6px 0;
+      border-radius: 4px;
+    }
+    
+    .nav-item:hover .dropdown {
+      display: block;
+    }
+    
+    .dropdown a {
+      display: block;
+      padding: 12px 16px;
+      text-decoration: none;
+      color: #333;
+      font-weight: 400;
+      transition: all 0.2s ease;
+    }
+    
+    .dropdown a:hover {
+      background-color: #f5f5f5;
+      color: #cc0000;
+      padding-left: 24px;
+    }
+    
+    .dropdown a:hover::after {
+      display: none;
+    }
+    
+    .signin {
+      font-size: 14px;
+      color: #666;
+      cursor: pointer;
+      transition: color 0.2s ease;
+      font-weight: 600;
+    }
+    
+    .signin:hover {
+      color: #cc0000;
+    }
+
+
+    .bodyheader {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 60px 40px;
+      background: linear-gradient(135deg, #fff 0%, #a2a2a2 100%);
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .bodyheader h1 {
+      font-size: 42px;
+      margin-bottom: 12px;
+      color: #1a1a1a;
+      font-weight: 700;
+    }
+
+    .bodyheader p {
+      font-size: 18px;
+      color: #666;
+      margin-bottom: 20px;
+      font-weight: 400;
+    }
+
+    .bodyheader button {
+      padding: 12px 28px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      background: #cc0000;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+
+    .bodyheader button:hover {
+      background-color: #bb0000;
+      box-shadow: 0 9px 12px rgba(204,0,0,0.2);
+      transform: translateY(-4px);
+    }
+
+    .bodyheaderimage {
+      width: 360px;
+      height: 280px;
+      align-items: center;
+      justify-content: center;
+      color: #999;
+      /* transition: transform 0.2s ease, box-shadow 0.2s ease; */
+      border-radius: 4px;
+      font-weight: 500;
+    }
+
+    /* .bodyheaderimage:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 20px rgba(0,0,0,0.1);
+    } */
+
+    .bodyheaderimage img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      padding: 40px;
+      max-width: 1400px;
+      margin: 0 auto;
+      background: linear-gradient(to bottom, #fff 0%, #cecdcd 100%);
+      align-items: center;
+      min-height: 500px;
+    }
+
+    .card {
+      background: #fff;
+      padding: 18px;
+      position: relative;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      border: 1px solid #e5e5e5;
+      border-radius: 4px;
+      text-align: center;
+    }
+    
+    .card > div:first-child {
+      font-size: 16px;
+      color: #1a1a1a;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+    
+    .card img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      border-radius: 2px;
+      margin-top: 8px;
+    }
+
+    .badge {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: #cc0000;
+      color: white;
+      padding: 6px 10px;
+      font-size: 12px;
+      font-weight: 700;
+      border-radius: 2px;
+      transition: all 0.2s ease;
+      z-index: 1;
+    }
+
+    .card:hover {
+      transform: translateY(-9px);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+      border-color: #cc0000;
+    }
+    
+    .card:hover .badge {
+      opacity: 0.9;
+    }
+    .footer {
+      background: #1a1a1a;
+      padding: 50px 40px 30px;
+      font-size: 13px;
+      color: #999;
+      border-top: 3px solid #cc0000;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer h4 {
+      margin-bottom: 16px;
+      font-size: 14px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .footer ul {
+      list-style: none;
+    }
+
+    .footer li {
+      margin-bottom: 10px;
+      padding: 0;
+      color: #999;
+      font-size: 13px;
+      cursor: pointer;
+      transition: color 0.2s ease;
+    }
+    
+    .footer li:hover {
+      color: #cc0000;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="header">
+    <div class="logo">Shri Seva Medicals</div>
+
+    <label>
+      <input class="search" type="text" placeholder="Search products, pharmacy, health & wellness">
+    </label>
+
+    <div class="signin">
+      Sign In | Register
+    </div>
+  </div>
+
+  <div class="nav">
+    <div class="nav-item">
+      <a href="">Pharmacy</a>
+      <div class="dropdown">
+        <a href="">Home</a>
+        <a href="">Prescriptions</a>
+        <a href="">Contact Lenses</a>
+        <a href="">More Services</a>
+        <a href="">Settings</a>
+      </div>
+    </div>
+    <div class="nav-item">
+      <a href="">Health & Wellness</a>
+      <div class="dropdown">
+        <a href="">Explore all Health Services</a>
+        <a href="">Vaccinations</a>
+        <a href="">Test for COVID-19 &amp; Flu</a>
+        <a href="">Treatment for COVID-19 &amp; Flu</a>
+        <a href="">Online Doctor Visit</a>
+        <a href="">My ShriSeva Health Access</a>
+        <a href="">Clinical Trials</a>
+        <a href="">Health Articles</a>
+      </div>
+    </div>
+    <div class="nav-item">
+      <a href="">Beauty & Personal Care</a>
+      <div class="dropdown">
+        <a href="">Skin Care</a>
+        <a href="">Hair Care</a>
+        <a href="">Makeup</a>
+        <a href="">Bath & Body</a>
+        <a href="">Fragrance</a>
+        <a href="">Personal Care & Hygiene</a>
+        <a href="">Tools & Brushes</a>
+      </div>
+    </div>
+    <div class="nav-item">
+      <a href="">Home & Office</a>
+      <div class="dropdown">
+        <a href="">Face & Body</a>
+        <a href="">Grooming</a>
+        <a href="">Workspace accessories</a>
+        <a href="">Living Space</a>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="bodyheader">
+    <div class="hero-text">
+      <h1>Your Health, Our Priority</h1>
+      <p>Shop prescription medications, vitamins, health & wellness products</p>
+      <button>Shop Now</button>
+    </div>
+
+    <div class="bodyheaderimage">
+      <img src="https://impactcare.co.in/wp-content/uploads/2024/10/What-is-Medicine-to-Medicine.webp;">
+    </div>
+</div>
+
+
+  <div class="grid">
+    <div class="card">
+      <div>Vitamins & Supplements</div>
+      <div class="badge">NEW</div>
+      <img src="https://wellmedbangkok.com/wp-content/uploads/2024/12/112.webp">
+    </div>
+
+    <div class="card">
+      <div>Prescription Delivery</div>
+      <div class="badge">SAVE 10%</div>
+      <img src="https://ik.imagekit.io/geminishriseva/snw%20project/gemini%20prescription%20image%20.png?updatedAt=1768335467967">
+    </div>
+
+    <div class="card">
+      <div>Beauty & Personal Care</div>
+      <div class="badge">SALE</div>
+      <img src="https://etimg.etb2bimg.com/photo/103277806.cms">
+    </div>
+  </div>
+  <div class="footer">
+    <div class="footer-grid">
+  
+      <div>
+        <h4>PHARMACY</h4>
+        <ul>
+          <li>Refill Prescription</li>
+          <li>Pharmacy Services</li>
+          <li>Vaccination</li>
+        </ul>
+      </div>
+  
+      <div>
+        <h4>CUSTOMER SERVICE</h4>
+        <ul>
+          <li>Contact Us</li>
+          <li>Shipping & Returns</li>
+          <li>Account & Orders</li>
+        </ul>
+      </div>
+  
+      <div>
+        <h4>COMPANY</h4>
+        <ul>
+          <li>About Shri Seva Medicals</li>
+          <li>Careers</li>
+          <li>Community</li>
+        </ul>
+      </div>
+  
+      <div>
+        <h4>POLICIES</h4>
+        <ul>
+          <li>Privacy Policy</li>
+          <li>Terms of Use</li>
+          <li>Accessibility</li>
+        </ul>
+      </div>
+  
+    </div>
+  </div>
+</body>
+</html>
